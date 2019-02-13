@@ -30,6 +30,7 @@ public class Magpie3
 	public String getResponse(String statement)
 	{
 		String response = "";
+		statement.trim();
 		if (statement.length() == 0)
 		{
 			response = "Say something, please.";

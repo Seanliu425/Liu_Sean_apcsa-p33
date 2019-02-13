@@ -13,6 +13,9 @@ public class StringEqualityRunner
 	public static void main( String args[] )
 	{
 		//add test cases
+		StringEquality hi = new StringEquality("same","different");
+		hi.checkEquality();
+		System.out.print(hi);
 		
 	}
 }
