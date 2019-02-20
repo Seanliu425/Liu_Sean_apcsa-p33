@@ -31,13 +31,8 @@ public class Magpie3
 	{
 		String response = "";
 		statement.trim();
-		if (statement.length() == 0)
-		{
+		if (statement.length() <= 0) {
 			response = "Say something, please.";
-		}
-		else if (findKeyword(statement, "no") >= 0)
-		{
-			response = "Why so negative?";
 		}
 		else if (findKeyword(statement, "mother") >= 0
 				|| findKeyword(statement, "father") >= 0
@@ -45,6 +40,38 @@ public class Magpie3
 				|| findKeyword(statement, "brother") >= 0)
 		{
 			response = "Tell me more about your family.";
+		}
+		else if (findKeyword(statement, "dog") >= 0
+				|| findKeyword(statement, "cat") >= 0)
+				{
+			response = "Tell me more about your pets";
+				}
+		else if (findKeyword(statement, "Mauro") >= 0 
+				|| findKeyword(statement, "mauro") >= 0)
+		{
+			response = "Your teacher sounds like a wise man.";
+		}
+		//additional keyword/response pair one
+		else if (findKeyword(statement, "Sports") >= 0
+				|| findKeyword(statement, "soccer") >= 0)
+		{
+			response = "You sound very athletic!";
+		}
+		//additional keyword/response pair two
+		else if (findKeyword(statement, "food") >= 0 
+				|| findKeyword(statement, "pizza") >= 0 
+				|| findKeyword(statement, "pasta") >= 0)
+		{
+			response = "We should get food sometime!";
+		}
+		//additional keyword/response pair three
+		else if (findKeyword(statement, "yes") >= 0)
+		{
+			response = "I love the positivity!";
+		}
+		else if (findKeyword(statement, "no") >= 0)
+		{
+			response = "Why so negative?";
 		}
 		else
 		{
@@ -145,7 +172,7 @@ public class Magpie3
 	 */
 	private String getRandomResponse()
 	{
-		final int NUMBER_OF_RESPONSES = 4;
+		final int NUMBER_OF_RESPONSES = 6;
 		double r = Math.random();
 		int whichResponse = (int) (r * NUMBER_OF_RESPONSES);
 		String response = "";
@@ -165,6 +192,14 @@ public class Magpie3
 		else if (whichResponse == 3)
 		{
 			response = "You don't say.";
+		}
+		else if (whichResponse == 4)
+		{
+			response = "That is fascinating!";
+		}
+		else if (whichResponse == 5)
+		{
+			response = "You've changed my world view";
 		}
 
 		return response;
