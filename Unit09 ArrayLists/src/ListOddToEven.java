@@ -8,8 +8,21 @@ import java.util.List;
 
 public class ListOddToEven
 {
-	public static boolean go( List<Integer> ray )
+	public static int go( List<Integer> ray )
 	{
-		return false;
+		for (int i=0; i<ray.size(); i++) {
+			if (ray.get(i)%2==1) {
+				int finalEven=0;
+				for (int j=i; j<ray.size(); j++) {
+					if (ray.get(j)%2==0) {
+						finalEven=j;
+					}
+				}
+				if (finalEven>0) {
+					return finalEven-i;
+				}
+			}
+		}
+		return -1;
 	}
 }

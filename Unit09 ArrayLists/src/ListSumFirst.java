@@ -10,6 +10,24 @@ public class ListSumFirst
 {
 	public static int go(List<Integer> ray)
 	{
-		return 0;
+		boolean hasLarger = false;
+		int sum = 0;
+		if (ray.size()==0) {
+			return -1;
+		}
+		else {
+			for (Integer i: ray) {
+				if (i>ray.get(0)) {
+					hasLarger=true;
+					sum+=i;
+				}
+			}
+		}
+		if (hasLarger==false) {
+			return -1;
+		}
+		else {
+			return sum;
+		}
 	}
 }
