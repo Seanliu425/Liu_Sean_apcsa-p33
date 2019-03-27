@@ -1,3 +1,4 @@
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -70,19 +71,19 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		for(int i = 0; i < 9; i++)
+		for(int i = 0; i < BOARD_SIZE; i++)
 		{
 			
-			for(int j = i + 1; j < 9; j++)
+			for(int j = i + 1; j < BOARD_SIZE; j++)
 			{
 				List<Integer> selectedCards = new ArrayList<Integer>();
 				selectedCards.add(i);
 				selectedCards.add(j);
-				if(containsPairSum11(selectedCards)) return true;
-				for(int k = j + 1; k < 9; k++)
+				if(isLegal(selectedCards)) return true;
+				for(int k = j + 1; k < BOARD_SIZE; k++)
 				{
 					selectedCards.add(k);
-					if(containsJQK(selectedCards)) return true;
+					if(isLegal(selectedCards)) return true;
 					else selectedCards.remove(2);
 				}
 			}

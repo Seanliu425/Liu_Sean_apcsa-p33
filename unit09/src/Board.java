@@ -38,7 +38,7 @@ public abstract class Board {
 			System.out.println(deck);
 			System.out.println("----------");
 		}
-		dealMyCards();
+		newGame();
 	}
 
 	/**
@@ -182,3 +182,4 @@ public abstract class Board {
 		}
 	}
 }
+
