@@ -1,4 +1,3 @@
-
 import java.util.List;
 import java.util.ArrayList;
 
@@ -56,7 +55,7 @@ public class ElevensBoard extends Board {
 	public boolean isLegal(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 		if(selectedCards.size() == 2 && containsPairSum11(selectedCards)) return true; 
-		else if(selectedCards.size() == 2 && containsJQK(selectedCards)) return true;
+		else if(selectedCards.size() == 3 && containsJQK(selectedCards)) return true;
 		return false;
 	}
 
@@ -129,6 +128,6 @@ public class ElevensBoard extends Board {
 			else if(cardAt(i).rank().equals("queen")) isQueen = true;
 			else if(cardAt(i).rank().equals("king")) isKing = true;
 		}
-		return (isJack); //|| isQueen || isKing);
+		return (isJack && isQueen && isKing);
 	}
 }
