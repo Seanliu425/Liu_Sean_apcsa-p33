@@ -23,7 +23,20 @@ public class PictureTester
 	  beach.keepOnlyBlue();
 	  beach.explore();
   }
-  
+  public static void testKeepOnlyRed()
+  {
+	  Picture beach = new Picture("src/images/beach.jpg");
+	  beach.explore();
+	  beach.keepOnlyRed();
+	  beach.explore();
+  }
+  public static void testKeepOnlyGreen()
+  {
+	  Picture beach = new Picture("src/images/beach.jpg");
+	  beach.explore();
+	  beach.keepOnlyGreen();
+	  beach.explore();
+  }
   public static void testNegate() {
 	  Picture beach = new Picture("src/images/beach.jpg");
 	  beach.explore();
@@ -38,6 +51,13 @@ public class PictureTester
 	  beach.explore();
   }
   /** Method to test mirrorVertical */
+  public static void testFixUnderwater()
+  {
+	  Picture water = new Picture("src/images/beach.jpg");
+	  water.explore();
+	  water.fixUnderwater();
+	  water.explore();
+  }
   public static void testMirrorVertical()
   {
     Picture caterpillar = new Picture("src/images/caterpillar.jpg");
@@ -53,7 +73,20 @@ public class PictureTester
 	  motorcycle.mirrorHorizontal();
 	  motorcycle.explore();
   }
-  
+  public static void testMirrorHorizontalBotToTop()
+  {
+	  Picture redM = new Picture("src/images/redMotorcycle.jpg");
+	  redM.explore();
+	  redM.mirrorHorizontalBotToTop();
+	  redM.explore();
+  }
+  public static void testMirrorDiagonal()
+  {
+	  Picture beach = new Picture("src/images/beach.jpg");
+	  beach.explore();
+	  beach.mirrorDiagonal();
+	  beach.explore();
+  }
   public static void testWater() {
 	  Picture water = new Picture("src/images/water.jpg");
 	  water.explore();
