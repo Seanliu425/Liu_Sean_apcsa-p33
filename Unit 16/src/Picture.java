@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.stream.*;
 import java.awt.font.*;
 import java.awt.geom.*;
 import java.awt.image.BufferedImage;
@@ -20,7 +21,7 @@ public class Picture extends SimplePicture
   /**
    * Constructor that takes no arguments 
    */
-  public Picture ()
+	public Picture ()
   {
     /* not needed but use it to show students the implicit call to super()
      * child constructors always call a parent constructor 
@@ -509,27 +510,36 @@ public class Picture extends SimplePicture
 	 Pixel[][] currPixels = this.getPixels2D();
 	 Pixel currPixel = null;
 	 Pixel messagePixel = null;
-	 int count = 0;
 	 for (int row = 0; row < this.getHeight(); row++)
 	 {
 		 for (int col = 0; col < this.getWidth(); col++)
 		 {
 			 currPixel = currPixels[row][col];
 			 int number = currPixel.getGreen();
-			 
-			 if ((number % 10) % 2 != 0)
+			 String x = String.valueOf(number);
+
+			 String[] digits1 = x.split("");
+			 int[] numbers = new int[digits1.length];
+			 for(int i = 0;i < digits1.length;i++)
+			 {
+			    numbers[i] = Integer.parseInt(digits1[i]);
+			 }
+			 int sum = 0;
+			 for (int i = 0; i < numbers.length; i++) {
+				 sum += numbers[i];
+			 }
+			 if (sum % 2 == 0)
 			 {
 				 currPixel.setGreen(currPixel.getGreen() + 1);
 			 }
 			 messagePixel = messagePixels[row][col];
 			 if (messagePixel.colorDistance(Color.BLACK) < 50)
+			 
 			 {
 				 currPixel.setGreen(currPixel.getGreen() - 1);
-				 count++;
 			 }
 		 }
 	 }
-	 System.out.println(count);
   }
   
   	public Picture decode()
@@ -547,21 +557,29 @@ public class Picture extends SimplePicture
   			for (int col = 0; col < this.getWidth(); col++)
   			{
   				currPixel = pixels[row][col];
-  				int num =  currPixel.getGreen();
+  				 int number = currPixel.getGreen();
+  				 String x = String.valueOf(number);
+  				 String[] digits1 = x.split("");
+  				 int[] numbers = new int[digits1.length];
+  				 for(int i = 0;i < digits1.length;i++)
+  				 {
+  				    numbers[i] = Integer.parseInt(digits1[i]);
+  				 }
+  				 int sum = 0;
+  				 for (int i = 0; i < numbers.length; i++) {
+  					 sum += numbers[i];
+  				 }
   				messagePixel = messagePixels[row][col];
-  				if ((currPixel.getGreen() % 2 == 0))
+  				if ((sum % 2 == 0))
   				{
-  					messagePixel.setColor(Color.BLACK);
-  					count++;
+  					messagePixel.setColor(Color.WHITE);
   				}
   				else {
-  					messagePixel.setColor(Color.WHITE);
-  					count++;
+  					messagePixel.setColor(Color.BLACK);
   				}
   			}
   		}
   		
-  		System.out.println(count);
   		return messagePicture;
   	}
   
