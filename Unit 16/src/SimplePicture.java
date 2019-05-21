@@ -652,6 +652,7 @@ public class SimplePicture implements DigitalPicture
      
  }
 
+
  /**
   * Method to write the contents of the picture to a file with 
   * the passed name without throwing errors
@@ -679,6 +680,7 @@ public class SimplePicture implements DigitalPicture
   */
  public static String getMediaPath(String fileName) {
    return FileChooser.getMediaPath(fileName);
+   
  }
  
   /**

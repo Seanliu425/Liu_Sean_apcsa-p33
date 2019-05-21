@@ -73,6 +73,7 @@ public class PictureTester
 	  motorcycle.mirrorHorizontal();
 	  motorcycle.explore();
   }
+ 
   public static void testMirrorHorizontalBotToTop()
   {
 	  Picture redM = new Picture("src/images/redMotorcycle.jpg");
@@ -86,6 +87,16 @@ public class PictureTester
 	  beach.explore();
 	  beach.mirrorDiagonal();
 	  beach.explore();
+  }
+ 
+  public static void testEncodeAndDecode()
+  {
+	  Picture beach = new Picture("src/images/beach.jpg");
+	  Picture message  = new Picture("src/images/msg.jpg");
+	  beach.explore();
+	  beach.encode(message);
+	  beach.explore();
+	  beach.decode().explore();
   }
   public static void testWater() {
 	  Picture water = new Picture("src/images/water.jpg");
@@ -153,6 +164,7 @@ public class PictureTester
 	  swan.explore();
   }
   
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -177,11 +189,11 @@ public class PictureTester
     //testMirrorDiagonal();
    // testCollage();
    // testMyCollage();
-    testCopy();
+    //testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
-    //testEncodeAndDecode();
+    testEncodeAndDecode();
     //testGetCountRedOverValue(250);
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);

@@ -503,6 +503,68 @@ public class Picture extends SimplePicture
 		}
   }
   
+  public void encode (Picture messagePict)
+  {
+	 Pixel[][] messagePixels = messagePict.getPixels2D();
+	 Pixel[][] currPixels = this.getPixels2D();
+	 Pixel currPixel = null;
+	 Pixel messagePixel = null;
+	 int count = 0;
+	 for (int row = 0; row < this.getHeight(); row++)
+	 {
+		 for (int col = 0; col < this.getWidth(); col++)
+		 {
+			 currPixel = currPixels[row][col];
+			 int number = currPixel.getGreen();
+			 
+			 if ((number % 10) % 2 != 0)
+			 {
+				 currPixel.setGreen(currPixel.getGreen() + 1);
+			 }
+			 messagePixel = messagePixels[row][col];
+			 if (messagePixel.colorDistance(Color.BLACK) < 50)
+			 {
+				 currPixel.setGreen(currPixel.getGreen() - 1);
+				 count++;
+			 }
+		 }
+	 }
+	 System.out.println(count);
+  }
+  
+  	public Picture decode()
+  	{
+  		Pixel[][] pixels = this.getPixels2D();
+  		int height = this.getHeight();
+  		int width = this.getWidth();
+  		Pixel currPixel = null;
+  		Pixel messagePixel = null;
+		Picture messagePicture = new Picture(height, width);
+  		Pixel[][] messagePixels = messagePicture.getPixels2D();
+  		int count = 0; 
+  		for (int row = 0; row < this.getHeight(); row++)
+  		{
+  			for (int col = 0; col < this.getWidth(); col++)
+  			{
+  				currPixel = pixels[row][col];
+  				int num =  currPixel.getGreen();
+  				messagePixel = messagePixels[row][col];
+  				if ((currPixel.getGreen() % 2 == 0))
+  				{
+  					messagePixel.setColor(Color.BLACK);
+  					count++;
+  				}
+  				else {
+  					messagePixel.setColor(Color.WHITE);
+  					count++;
+  				}
+  			}
+  		}
+  		
+  		System.out.println(count);
+  		return messagePicture;
+  	}
+  
   private Color avgColor(Pixel one, Pixel two, Pixel three)
   {
 	  int greenAvg = (one.getGreen() + two.getGreen() + three.getGreen())/3;
