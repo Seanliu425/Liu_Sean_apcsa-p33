@@ -503,7 +503,19 @@ public class Picture extends SimplePicture
 		  }
 		}
   }
-  
+  public int sum1(int a) {
+	  int sum;
+		 if (a == 0) {
+			 sum = 0;
+		 } else {
+			 sum = a % 10;
+			 while (a > 0) {
+				 a /= 10;
+				 sum += a % 10;
+			 }
+		 }
+		 return sum;
+  }
   public void encode (Picture messagePict)
   {
 	 Pixel[][] messagePixels = messagePict.getPixels2D();
@@ -515,28 +527,24 @@ public class Picture extends SimplePicture
 		 for (int col = 0; col < this.getWidth(); col++)
 		 {
 			 currPixel = currPixels[row][col];
-			 int number = currPixel.getGreen();
-			 String x = String.valueOf(number);
-
-			 String[] digits1 = x.split("");
-			 int[] numbers = new int[digits1.length];
-			 for(int i = 0;i < digits1.length;i++)
-			 {
-			    numbers[i] = Integer.parseInt(digits1[i]);
-			 }
-			 int sum = 0;
-			 for (int i = 0; i < numbers.length; i++) {
-				 sum += numbers[i];
-			 }
-			 if (sum % 2 == 0)
+			 int sum = sum1(currPixel.getGreen()+currPixel.getBlue()+currPixel.getRed());
+			 while (!(sum % 3 == 0))
 			 {
 				 currPixel.setGreen(currPixel.getGreen() + 1);
+				 currPixel.setRed(currPixel.getRed() + 2);
+				 currPixel.setBlue(currPixel.getBlue() + 1);
+				 
+				 sum = sum1(currPixel.getGreen()+currPixel.getBlue()+currPixel.getRed());
 			 }
+					 
 			 messagePixel = messagePixels[row][col];
 			 if (messagePixel.colorDistance(Color.BLACK) < 50)
 			 
 			 {
+				
 				 currPixel.setGreen(currPixel.getGreen() - 1);
+				 currPixel.setRed(currPixel.getRed() - 2);
+				 currPixel.setBlue(currPixel.getBlue() - 1);
 			 }
 		 }
 	 }
@@ -556,21 +564,10 @@ public class Picture extends SimplePicture
   		{
   			for (int col = 0; col < this.getWidth(); col++)
   			{
-  				currPixel = pixels[row][col];
-  				 int number = currPixel.getGreen();
-  				 String x = String.valueOf(number);
-  				 String[] digits1 = x.split("");
-  				 int[] numbers = new int[digits1.length];
-  				 for(int i = 0;i < digits1.length;i++)
-  				 {
-  				    numbers[i] = Integer.parseInt(digits1[i]);
-  				 }
-  				 int sum = 0;
-  				 for (int i = 0; i < numbers.length; i++) {
-  					 sum += numbers[i];
-  				 }
+  				 currPixel = pixels[row][col];
+  				 int sum = sum1(currPixel.getGreen()+currPixel.getBlue()+currPixel.getRed());
   				messagePixel = messagePixels[row][col];
-  				if ((sum % 2 == 0))
+  				if ((sum % 3 == 0) && sum != 0)
   				{
   					messagePixel.setColor(Color.WHITE);
   				}
@@ -595,10 +592,14 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("src/images/beach.jpg");
-    beach.explore();
-    beach.zeroBlue();
-    beach.explore();
+
+		  Picture beach = new Picture("src/images/beach.jpg");
+		  Picture message  = new Picture("src/images/msg.jpg");
+		  beach.explore();
+		  beach.encode(message);
+		  beach.explore();
+		  beach.decode().explore();
+	  
   }
   
 }
